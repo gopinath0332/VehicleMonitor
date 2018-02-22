@@ -9,11 +9,6 @@ module.exports = {
    entry: {
       app: "./src/index.js"
    },
-   output: {
-      filename: "[name].build.js",
-      // path: path.resolve(__dirname, "../../webapp/resources/dist")
-       path: path.resolve("C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\app\\resources\\dist")
-   },
    plugins: [
       new CleanWebpackPlugin(['dist']),
    ],

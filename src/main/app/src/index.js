@@ -7,8 +7,8 @@ class App extends Component {
     render() {
         return (
             <div id="app" className={css.test}>
-                <div> App component - 12
-                    <img className="col col-md-8" src="./resources/images/download.png"/>
+                <div> App component -
+                    <img src="./resources/images/download.png"/>
                 </div>
             </div>
         );
