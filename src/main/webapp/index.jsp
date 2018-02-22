@@ -12,6 +12,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./resources/dist/app.css"/>
 </head>
 <body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@include file="./resources/index.html"%>
     <div id="content"></div>
     <script src="http://maps.google.com/maps/api/js?key=AIzaSyC3CtQDjwYnSrh_4wNfYbPaM4syRrC93FM" type="text/javascript"></script>
     <script src="./resources/dist/app.build.js"></script>
