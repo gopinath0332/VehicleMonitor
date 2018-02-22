@@ -7,7 +7,7 @@ import Dashboard from "../dashboard/Dashboard";
 const Main1 = () => (
     <main>
         <Switch>
-            <Route  path='/' component={Login}/>
+            <Route exact path='/' component={Login}/>
             <Route path='/dashboard' component={Dashboard}/>
         </Switch>
     </main>

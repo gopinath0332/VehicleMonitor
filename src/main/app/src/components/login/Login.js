@@ -11,11 +11,12 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to the Tornadoes Website!1</h1>
-                <button onClick={this.login}>CLick me </button>
+                <h1>Welcome to the Tornadoes Website!</h1>
+                <button className="btn btn-primary" onClick={this.login}>Redirect to dashboard</button>
             </div>
         )
     }
 }
 
 export default withRouter(Login);
+// export default Login;
