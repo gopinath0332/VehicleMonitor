@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 
-class Dashboard extends Component {
+export default class Dashboard extends Component {
     render() {
         return (
             <div className="login">
@@ -10,5 +10,3 @@ class Dashboard extends Component {
         )
     }
 }
-
-export default withRouter(Dashboard);

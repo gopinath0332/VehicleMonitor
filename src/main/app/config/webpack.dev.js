@@ -7,7 +7,7 @@ const path = require("path");
 module.exports = merge(common,{
     output: {
         filename: "[name].build.js",
-         path: path.resolve("C:\\xampp\\tomcat\\webapps\\app\\resources\\dist")
+         path: path.resolve("C:\\Gopi\\tomcat9\\webapps\\app\\resources\\dist")
         //  path: path.resolve(__dirname, "../../webapp/resources/dist")
      },
    devtool: 'inline-source-map',
