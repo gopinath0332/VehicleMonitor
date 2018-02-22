@@ -12,8 +12,6 @@ module.exports = merge(common,{
      },
    devtool: 'inline-source-map',
    plugins: [
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
        new ExtractTextPlugin("app.css", { allChunks: true })
    ]
 })
