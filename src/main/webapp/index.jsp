@@ -1,8 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <body>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<% boolean isAuthenticated = false;%>
+<% if(isAuthenticated){ %>
 <%@include file="./resources/index.html"%>
+<% }else{ %>
+<%@include file="./resources/login.html" %>
+<% } %>
 </body>
 </html>

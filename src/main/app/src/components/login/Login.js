@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {render} from "react-dom";
 import {withRouter, Link} from "react-router-dom";
 import {autobind} from 'core-decorators';
 
