@@ -4,38 +4,29 @@ import {autobind} from 'core-decorators';
 /**
  *  Class to create google maps marker
  */
-const wrappedPromise = function() {
-    let wrappedPromise = {},
-        promise = new Promise(function (resolve, reject) {
-            wrappedPromise.resolve = resolve;
-            wrappedPromise.reject = reject;
-        });
-    wrappedPromise.then = promise.then.bind(promise);
-    wrappedPromise.catch = promise.catch.bind(promise);
-    wrappedPromise.promise = promise;
-
-    return wrappedPromise;
-};
 
 @autobind
 export default class Marker extends Component {
     marker = null;
 
     renderMarker(props = this.props) {
-        let {map, google, position} = props;
+        let {map, google, position, title = "", onClick} = props;
         if (!google)
             return;
-        // position = new google.maps.LatLng(position.lat, position.lng);
         const config = {
             map: map,
-            position: position
+            position: position,
+            title
         };
         this.marker = new google.maps.Marker(config);
-        // this.markerPromise.resolve(this.marker);
+        if (onClick) {
+            this.marker.addListener("click", (e) => {
+                onClick(this.props, this.marker, e);
+            })
+        }
     }
 
     componentDidMount() {
-        // this.markerPromise = wrappedPromise();
         this.renderMarker();
     }
 
