@@ -1,33 +1,46 @@
-import React,{Component} from "react";
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import React, {Component} from "react";
+import {autobind} from 'core-decorators';
 
-class Maps extends  Component{
-    constructor(args){
+@autobind
+export default class Maps extends Component {
+    map = null;
+
+    constructor(args) {
         super(args);
+        this.state = {};
     }
-    render(){
-        return(
-            <div className="map">
-                <GoogleMap {...this.props}>
-                    <Marker position={{ lat: -34.397, lng: 150.644 }} />
-                </GoogleMap>
+
+    loadMap() {
+        try {
+            const {maps} = google;
+            const mapConfig = {
+                center: {
+                    lat: 13.0347043,
+                    lng: 80.208199
+                },
+                zoom: 7,
+                mapTypeId: maps.MapTypeId.ROADMAP,
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: maps.MapTypeControlStyle.VERTICAL_BAR,
+                    position: maps.ControlPosition.TOP_RIGHT
+                }
+            };
+            this.map = new maps.Map(this.node, mapConfig);
+        } catch (e) {
+            console.error("error in loading map ", e);
+        }
+    }
+
+    componentDidMount() {
+        this.loadMap();
+    }
+
+    render() {
+        return (
+            <div className="map-node" ref={c => this.node = c}>
+                Loading map...
             </div>
         )
     }
 }
-
-Maps.defaultProps  ={
-    defaultCenter : {
-        lat : 13.0347043,
-        lng : 80.208199
-    },
-    defaultZoom : 7,
-    mapTypeId : google.maps.MapTypeId.ROADMAP,
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-        style: google.maps.MapTypeControlStyle.VERTICAL_BAR,
-        position: google.maps.ControlPosition.TOP_RIGHT
-    }
-};
-
-export default withGoogleMap(Maps);
