@@ -20,8 +20,9 @@ class Header extends Component {
                     <div className="col col-md-9">
                         <div className="app-name">Vehicle Monitoring System</div>
                     </div>
-                    <div className="col col-md 2">
+                    <div className="col col-md 2 app-info">
                         <label className="app-user-name"> {util.getUsername()}</label>
+                        <i className="fa fa-cog settings"/>
                     </div>
                 </div>
             </section>
