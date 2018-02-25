@@ -1,19 +1,38 @@
-import React,{Component} from "react";
+import React, {Component} from "react";
 import ReactMap from "./ReactMaps";
+import Marker from "./Marker";
 
 import "./maps.less";
-export default class MapContainer extends Component{
-    render(){
-        const style = {
-            width: '100%',
-            height: '100%',
-            display: "flex",
-            flexDirection: "row",
-            flexGrow: 1
+
+export default class MapContainer extends Component {
+    constructor(args) {
+        super(args);
+        this.state = {
+            position: {
+                lat: 0,
+                lng: 0
+            }
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            position: {
+                lat: 13.078791,
+                lng: 80.252266
+            }
+        })
+    }
+
+    render() {
+        const position = {
+            ...this.state.position
         };
-        return(
+        return (
             <div className="map-container">
-                <ReactMap/>
+                <ReactMap {...this.props}>
+                    <Marker position={position}/>
+                </ReactMap>
             </div>
         )
     }
