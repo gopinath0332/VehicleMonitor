@@ -3,6 +3,8 @@ import {render} from "react-dom";
 import {autobind} from 'core-decorators';
 import axios from "axios";
 
+import "./login.less";
+
 @autobind
 class Login extends Component {
     constructor(args) {
@@ -13,38 +15,41 @@ class Login extends Component {
         };
     }
 
-    onUserName(evt) {
-        this.setState({
-            name: evt.target.value
+    /**
+     * Method to login authentication rest call
+     */
+    login() {
+        const {name, password} = this.state;
+        axios.post("/api/login", {
+            name,
+            password
+        }).then(({data}) => {
+            if (data === "success") {
+                window.location.reload();
+            }
         });
-    }
-
-    onPassword(evt) {
-        this.setState({
-            password: evt.target.value
-        });
-    }
-    login(){
-        const {name,password} = this.state;
-            axios.post("/api/login",{
-                name,
-                password
-            }).then(({data})=>{
-                if(data === "success"){
-                    window.location.reload();
-                }
-            });
     }
 
     render() {
         return (
             <div>
-                <div> Login Screen</div>
-                <label> Username</label>
-                <input type="text" onChange={this.onUserName}/>
-                <label> Password</label>
-                <input type="text" onChange={this.onPassword}/>
-                <button onClick={this.login}> Login </button>
+                <div className="wrapper">
+                    <div className="form-signin">
+                        <h2 className="form-signin-heading">Vehicle Monitoring System</h2>
+                        <input type="text" className="form-control"
+                               name="username"
+                               placeholder="Username"
+                               onChange={(evt)=>this.setState({name: evt.target.value})}
+                               required
+                               autoFocus/>
+                        <input type="password" className="form-control"
+                               name="password"
+                               placeholder="Password"
+                               onChange={(evt)=>this.setState({password: evt.target.value})}
+                               required=""/>
+                        <button className="btn btn-lg btn-primary btn-block" onClick={this.login}>Login</button>
+                    </div>
+                </div>
             </div>
         )
     }
