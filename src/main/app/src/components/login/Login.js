@@ -1,23 +1,53 @@
 import React, {Component} from "react";
 import {render} from "react-dom";
-import {withRouter, Link} from "react-router-dom";
 import {autobind} from 'core-decorators';
+import axios from "axios";
 
 @autobind
 class Login extends Component {
-    login() {
-        this.props.history.push("/dashboard");
+    constructor(args) {
+        super(args);
+        this.state = {
+            name: "",
+            password: ""
+        };
+    }
+
+    onUserName(evt) {
+        this.setState({
+            name: evt.target.value
+        });
+    }
+
+    onPassword(evt) {
+        this.setState({
+            password: evt.target.value
+        });
+    }
+    login(){
+        const {name,password} = this.state;
+            axios.post("/api/login",{
+                name,
+                password
+            }).then(({data})=>{
+                if(data === "success"){
+                    window.location.reload();
+                }
+            });
     }
 
     render() {
         return (
             <div>
-                <h1>Welcome to the Tornadoes Website!</h1>
-                <button className="btn btn-primary" onClick={this.login}>Redirect to dashboard</button>
+                <div> Login Screen</div>
+                <label> Username</label>
+                <input type="text" onChange={this.onUserName}/>
+                <label> Password</label>
+                <input type="text" onChange={this.onPassword}/>
+                <button onClick={this.login}> Login </button>
             </div>
         )
     }
 }
 
-export default withRouter(Login);
-// export default Login;
+render((<Login/>), document.getElementById("login"));
