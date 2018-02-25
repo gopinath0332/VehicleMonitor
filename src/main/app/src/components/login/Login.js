@@ -3,6 +3,7 @@ import {render} from "react-dom";
 import {autobind} from 'core-decorators';
 import axios from "axios";
 
+import AppUtil from  "../../util/appUtil";
 import "./login.less";
 
 @autobind
@@ -26,6 +27,7 @@ class Login extends Component {
             password
         }).then(({data}) => {
             if (data === "success") {
+                AppUtil.setUsername(name);
                 window.location.reload();
             }
         });
@@ -36,7 +38,7 @@ class Login extends Component {
             <div>
                 <div className="wrapper">
                     <div className="form-signin">
-                        <h2 className="form-signin-heading">Vehicle Monitoring System</h2>
+                        <h4 className="form-signin-heading">Vehicle Monitoring System</h4>
                         <input type="text" className="form-control"
                                name="username"
                                placeholder="Username"
