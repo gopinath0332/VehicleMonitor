@@ -85,13 +85,15 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this.getDevcieDetails();
+    this.setState({
+      makerDetails: this.getDevcieDetails()
+    })
   }
 
   render() {
     return (
       <div className="dashboard col col-md-12" ref={c => this.mapDom = c}>
-        <MapContainer/>
+        <MapContainer makerDetails={this.state.makerDetails}/>
       </div>
     )
   }

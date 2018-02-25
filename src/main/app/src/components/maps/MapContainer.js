@@ -17,7 +17,8 @@ export default class MapContainer extends Component {
       },
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      makerDetails: []
     }
   }
 
@@ -52,6 +53,10 @@ export default class MapContainer extends Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    console.log("copone did update", this.props);
+  }
+
   render() {
     const position = {
       ...this.state.position
@@ -59,9 +64,18 @@ export default class MapContainer extends Component {
     return (
       <div className="map-container">
         <ReactMap {...this.props}>
-          <MapMarker position={position}
-                     title="marker-1"
-                     onClick={this.onMarkerClick}/>
+          {
+            this.props.makerDetails.map(item => {
+              const position = {
+                lat: parseFloat(item.lat),
+                lng: parseFloat(item.lng)
+              };
+              return <MapMarker position={position}
+                                key={item.deviceId}
+                                title={item.vehicleNumber}
+                                onClick={this.onMarkerClick}/>
+            })
+          }
           <MapInfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -75,3 +89,7 @@ export default class MapContainer extends Component {
     )
   }
 }
+
+MapContainer.defaultProps = {
+  makerDetails: []
+};
