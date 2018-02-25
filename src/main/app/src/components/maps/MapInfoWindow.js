@@ -11,10 +11,13 @@ export default class MapInfoWindow extends Component {
     }
 
     renderInfoWindow() {
-        let {map, google, mapCenter} = this.props;
+        let {google, onClose} = this.props;
         const iw = this.infowindow = new google.maps.InfoWindow({
             content: ''
         });
+        if (onClose) {
+            google.maps.event.addListener(iw, 'closeclick', () => onClose());
+        }
     }
 
     renderChildren() {
@@ -30,7 +33,7 @@ export default class MapInfoWindow extends Component {
         this.infowindow.close();
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.renderInfoWindow();
     }
 

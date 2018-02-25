@@ -35,6 +35,14 @@ export default class MapContainer extends Component {
         });
     }
 
+    onInfoClose(){
+        this.setState({
+            selectedPlace: {},
+            activeMarker: {},
+            showingInfoWindow: false
+        })
+    }
+
     componentDidMount() {
         this.setState({
             position: {
@@ -56,9 +64,10 @@ export default class MapContainer extends Component {
                                onClick={this.onMarkerClick}/>
                     <MapInfoWindow
                         marker={this.state.activeMarker}
-                        visible={this.state.showingInfoWindow}>
+                        visible={this.state.showingInfoWindow}
+                        onClose={this.onInfoClose}>
                         <div>
-                            <h1>{this.state.selectedPlace.title}</h1>
+                            <h5>{this.state.selectedPlace.title}</h5>
                         </div>
                     </MapInfoWindow>
                 </ReactMap>
