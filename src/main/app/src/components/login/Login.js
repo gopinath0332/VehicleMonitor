@@ -19,6 +19,7 @@ class Login extends Component {
      * Method to login authentication rest call
      */
     login() {
+        // this.props.history.push("/dashboard");
         const {name, password} = this.state;
         axios.post("/api/login", {
             name,
@@ -48,6 +49,7 @@ class Login extends Component {
                                onChange={(evt)=>this.setState({password: evt.target.value})}
                                required=""/>
                         <button className="btn btn-lg btn-primary btn-block" onClick={this.login}>Login</button>
+                        <button className="btn btn-link">Reset Password</button>
                     </div>
                 </div>
             </div>
