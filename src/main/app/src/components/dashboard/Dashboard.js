@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import {withRouter} from "react-router-dom";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import "./dashboard.less";
 import MapContainer from "../maps/MapContainer";
-import {vehicleOff, vehicleOn, vehicleIdle, vehicleRunning} from "../../util/constants";
+import { vehicleOff, vehicleOn, vehicleIdle, vehicleRunning } from "../../util/constants";
 import currentDevices from "./trackDetailsData";
 import allDevices from "./latLangData";
 
@@ -93,7 +93,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard col col-md-12" ref={c => this.mapDom = c}>
-        <MapContainer makerDetails={this.state.makerDetails}/>
+        <MapContainer makerDetails={this.state.makerDetails} />
       </div>
     )
   }

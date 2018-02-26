@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import ReactMap from "./ReactMaps";
-import {autobind} from 'core-decorators';
+import { autobind } from 'core-decorators';
 
 import MapMarker from "./MapMarker";
 import MapInfoWindow from "./MapInfoWindow"
@@ -54,7 +54,11 @@ export default class MapContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("copone did update", this.props);
+    if (prevProps.makerDetails.length !== this.props.makerDetails.length) {
+      this.setState({
+        makerDetails: this.props.makerDetails
+      })
+    }
   }
 
   render() {
@@ -65,15 +69,15 @@ export default class MapContainer extends Component {
       <div className="map-container">
         <ReactMap {...this.props}>
           {
-            this.props.makerDetails.map(item => {
+            this.state.makerDetails.map(item => {
               const position = {
                 lat: parseFloat(item.lat),
                 lng: parseFloat(item.lng)
               };
               return <MapMarker position={position}
-                                key={item.deviceId}
-                                title={item.vehicleNumber}
-                                onClick={this.onMarkerClick}/>
+                key={item.deviceId}
+                title={item.vehicleNumber}
+                onClick={this.onMarkerClick} />
             })
           }
           <MapInfoWindow

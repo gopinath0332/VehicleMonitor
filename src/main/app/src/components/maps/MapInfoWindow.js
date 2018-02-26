@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {autobind} from 'core-decorators';
+import React, { Component } from "react";
+import { autobind } from 'core-decorators';
 import ReactDOMServer from 'react-dom/server'
 
 @autobind
@@ -19,7 +19,7 @@ export default class MapInfoWindow extends Component {
   }
 
   renderInfoWindow() {
-    let {google, onClose} = this.props;
+    let { google, onClose } = this.props;
     const iw = this.infowindow = new google.maps.InfoWindow({
       content: ''
     });
@@ -29,7 +29,7 @@ export default class MapInfoWindow extends Component {
   }
 
   renderChildren() {
-    const {children} = this.props;
+    const { children } = this.props;
     return ReactDOMServer.renderToString(children);
   }
 
@@ -46,7 +46,7 @@ export default class MapInfoWindow extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {google, map} = this.props;
+    const { google, map } = this.props;
 
     if (!google || !map) {
       return;
