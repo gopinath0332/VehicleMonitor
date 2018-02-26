@@ -54,6 +54,7 @@ export default class MapContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    //TODO: need to check array elements difference.
     if (prevProps.makerDetails.length !== this.props.makerDetails.length) {
       this.setState({
         makerDetails: this.props.makerDetails
