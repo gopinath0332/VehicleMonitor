@@ -7,8 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./resources/lib/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="./resources/lib/font-awsome/font-awesome.min.css"/>
+    <!--Load app theme-->
+    <link rel="stylesheet" type="text/css" media="screen" href="./resources/lib/theme.css"/>
+    <!--Load custom app styles-->
     <link rel="stylesheet" type="text/css" media="screen" href="./resources/dist/app.css"/>
-
+<style>
+    .navbar-brand {
+        background-image: url("resources/images/logo-symbol.png") !important;
+        background-size: 40px auto !important;
+    }
+    @media (max-width: 991.98px) {
+        .app-header.navbar .navbar-brand {
+            display: none;
+        }
+    }
+</style>
 </head>
 <body>
 <div id="content"></div>

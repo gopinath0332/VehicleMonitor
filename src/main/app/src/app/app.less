@@ -1,22 +1,26 @@
-@headerHeight: 4rem;
+@headerHeight: 55px;
 body {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: #3e4855;
-    background-color: #fff;
-    line-height: 1.42857143;
-  .app-header{
-    height: @headerHeight;
-  }
-    #content{
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      .main-content{
-        height: calc(~"100% - "@headerHeight);
-        display: flex;
-        flex-direction: row;
-        flex-grow: 1;
-      }
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  color: #3e4855;
+  background-color: #fff;
+  line-height: 1.42857143;
+  #content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .main-content {
+      height: calc(~"100% - " @headerHeight);
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
     }
+  }
+
+}
+
+:local(.app) {
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }

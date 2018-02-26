@@ -1,14 +1,14 @@
-import React, {Component,Fragment} from "react";
+import React from "react";
 
 import Header from "../components/view/header/Header";
 import Main from "../components/view/Main";
-import "./app.less";
+import style from "./app.less";
 
 const App = () => (
-    <Fragment>
-        <Header/>
-        <Main/>
-    </Fragment>
+  <div className={style.app}>
+    <Header/>
+    <Main/>
+  </div>
 );
 
 export default App;
