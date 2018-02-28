@@ -12,7 +12,6 @@ module.exports = merge(common, {
   },
   // devtool: 'inline-source-map',
   plugins: [
-    new ExtractTextPlugin("app.css", {allChunks: true}),
-    new UglifyJSPlugin()
+    new ExtractTextPlugin("app.css", {allChunks: true})
   ]
 });
