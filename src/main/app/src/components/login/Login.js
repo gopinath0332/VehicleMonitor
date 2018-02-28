@@ -6,6 +6,7 @@ import {TextField} from "material-ui";
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import {validationError} from "../../util/messages";
 import AppUtil from "../../util/appUtil";
 import "./login.less";
 
@@ -15,7 +16,9 @@ class Login extends Component {
     super(args);
     this.state = {
       name: "",
-      password: ""
+      password: "",
+      nameValidation: "",
+      passwordValidation: ""
     };
   }
 
@@ -25,15 +28,33 @@ class Login extends Component {
   login() {
     // this.props.history.push("/dashboard");
     const {name, password} = this.state;
-    axios.post("/api/login", {
+    !name && this.setState({nameValidation: validationError});
+    !password && this.setState({passwordValidation: validationError});
+    if (name && password) {
+      axios.post("/api/login", {
+        name,
+        password
+      }).then(({data}) => {
+        if (data === "success") {
+          AppUtil.setUsername(name);
+          window.location.reload();
+        }
+      });
+    }
+  }
+
+  setUsername(evt, name) {
+    this.setState({
       name,
-      password
-    }).then(({data}) => {
-      if (data === "success") {
-        AppUtil.setUsername(name);
-        window.location.reload();
-      }
+      nameValidation: name ? "" : validationError
     });
+  }
+
+  setPassword(evt, password) {
+    this.setState({
+      password,
+      passwordValidation: password ? "" : validationError
+    })
   }
 
   render() {
@@ -42,20 +63,19 @@ class Login extends Component {
         <div className="wrapper">
           <div className="form-signin">
             <h4 className="form-signin-heading">Vehicle Monitoring System</h4>
-            <input type="text" className="form-control"
-                   name="username"
-                   placeholder="Username"
-                   onChange={(evt) => this.setState({name: evt.target.value})}
-                   required
-                   autoFocus/>
             <TextField
               floatingLabelText="Username"
+              fullWidth
+              onChange={this.setUsername}
+              errorText={this.state.nameValidation}
             />
-            <input type="password" className="form-control"
-                   name="password"
-                   placeholder="Password"
-                   onChange={(evt) => this.setState({password: evt.target.value})}
-                   required=""/>
+            <TextField
+              floatingLabelText="Password"
+              fullWidth
+              onChange={this.setPassword}
+              type="password"
+              errorText={this.state.passwordValidation}
+            />
             <button className="btn btn-lg btn-primary btn-block" onClick={this.login}>Login</button>
             <button className="btn btn-link">Reset Password</button>
           </div>
